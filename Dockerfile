@@ -15,7 +15,7 @@ COPY src ./src
 RUN mvn package -DskipTests
 
 # Configura el contenedor final con la imagen de Java y el artefacto compilado
-FROM adoptopenjdk:17-jre-hotspot
+FROM openjdk:17-jdk-slim
 
 WORKDIR /app
 
