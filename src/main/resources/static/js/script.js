@@ -705,7 +705,7 @@ function cargarReservas() {
     var eventos = [];
 
     $.ajax({
-        url: "http://localhost:8080/admin/reservas-confirmadas",
+        url: ip+"/admin/reservas-confirmadas",
         type: "GET",
         headers: {
             "Authorization": "Bearer " + tokenJWT
@@ -877,7 +877,7 @@ function inicializar() {
 function cargarTablaLinea(){
     var tokenJWT = localStorage.getItem('token');
     $.ajax({
-            url: "http://localhost:8080/admin/lineaInvestigacion",
+            url: ip+"/admin/lineaInvestigacion",
             type: "GET",
             headers: {
                 "Authorization": "Bearer " + tokenJWT
