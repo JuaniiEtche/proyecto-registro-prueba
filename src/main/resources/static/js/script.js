@@ -1,5 +1,5 @@
 //const ip = "http://190.247.84.16:8080"
-const ip ="http://localhost:8080"
+const ip ="https://prueba-qeau.onrender.com"
 const $btnLog = document.getElementById("logear");
 
 const $btnRegistro = document.getElementById("registro");
