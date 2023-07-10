@@ -1,4 +1,4 @@
-const ip ="http://localhost:8080"
+const ip ="https://prueba-qeau.onrender.com"
 
 
 const $btnRegistro = document.getElementById("registro");
