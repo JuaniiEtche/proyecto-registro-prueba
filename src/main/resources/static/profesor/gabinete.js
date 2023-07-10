@@ -7,7 +7,7 @@ function cargarReservas() {
     var eventos = [];
 
     $.ajax({
-        url: "http://localhost:8080/admin/reservas-confirmadas",
+        url: ip+"/admin/reservas-confirmadas",
         type: "GET",
         headers: {
             "Authorization": "Bearer " + tokenJWT

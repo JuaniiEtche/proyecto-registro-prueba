@@ -158,7 +158,7 @@ function cargarTablaPendiente() {
     var tokenJWT = localStorage.getItem('token');
 
     $.ajax({
-        url: "http://localhost:8080/admin/reservas-pendientes",
+        url: ip+"/admin/reservas-pendientes",
         type: "GET",
         headers: {
             "Authorization": "Bearer " + tokenJWT

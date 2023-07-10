@@ -2,7 +2,7 @@
 function cargarTablaLinea(){
     var tokenJWT = localStorage.getItem('token');
     $.ajax({
-        url: "http://localhost:8080/admin/lineaInvestigacion",
+        url: ip+"/admin/lineaInvestigacion",
         type: "GET",
         async:false,
         headers: {
