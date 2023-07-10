@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Información del becario</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <script src="https://code.jquery.com/jquery-3.6.0.js" integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="../lib/toastr.min.css">
+    <script src="../lib/toastr.min.js"></script>
+</head>
+<body onload="armarCabeceraAdmin(),armarFooter(),cargarProyectosAsignados(),cargarDatosPersonales(),cargarDatosAcademicos()">
+
+<div id="cabecera-admin">
+
+</div>
+
+
+
+<br>
+<div class="container">
+    <div class="content">
+        <h1 id="nombreBecario"></h1>
+        <hr>
+
+        <h2>Datos personales</h2>
+
+        <div class="row">
+            <div class="col">
+                <div class="form-group">
+                    <label for="nombre_apellido">Nombre y Apellido:</label>
+                    <input type="text" class="form-control" id="nombre_apellido" name="nombre_apellido" readonly>
+                </div>
+            </div>
+            <div class="col">
+                <div class="form-group">
+                    <label for="dni">DNI:</label>
+                    <input type="text" class="form-control" id="dni" name="dni" readonly>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col">
+                <div class="form-group">
+                    <label for="telefono">Teléfono:</label>
+                    <input type="text" class="form-control" id="telefono" name="telefono" readonly>
+                </div>
+            </div>
+            <div class="col">
+                <div class="form-group">
+                    <label for="email">Email:</label>
+                    <input type="email" class="form-control" id="email" name="email" readonly>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col">
+                <div class="form-group">
+                    <label for="legajo">Legajo:</label>
+                    <input type="text" class="form-control" id="legajo" name="legajo" readonly>
+                </div>
+            </div>
+            <div class="col">
+                <div class="form-group">
+                    <label for="observaciones">Observaciones:</label>
+                    <textarea class="form-control" id="observaciones" name="observaciones" readonly></textarea>
+                </div>
+            </div>
+        </div>
+        <button class="btn btn-primary">Editar</button>
+        <button class="btn btn-primary">Imprimir Informe</button>
+        <hr>
+
+
+        <h2>Datos académicos</h2>
+
+        <div>
+            <div class="row">
+                <div class="col">
+                    <div class="form-group">
+                        <label for="carrera">Carrera:</label>
+                        <input type="text" class="form-control" id="carrera" name="carrera" readonly>
+                    </div>
+                </div>
+                <div class="col">
+                    <div class="form-group">
+                        <label for="anio_ingreso">Año ingreso:</label>
+                        <input type="text" class="form-control" id="anio_ingreso" name="anio_ingreso" readonly>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col">
+                    <div class="form-group">
+                        <label for="anio_cursada">Año cursada:</label>
+                        <input type="text" class="form-control" id="anio_cursada" name="anio_cursada" readonly>
+                    </div>
+                </div>
+                <div class="col">
+                    <div class="form-group">
+                        <label for="materias_cursadas">Cantidad de materias cursadas:</label>
+                        <input type="text" class="form-control" id="materias_cursadas" name="materias_cursadas" readonly>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col">
+                    <div class="form-group">
+                        <label for="materias_aprobadas">Cantidad de materias aprobadas:</label>
+                        <input type="text" class="form-control" id="materias_aprobadas" name="materias_aprobadas" readonly>
+                    </div>
+                </div>
+                <div class="col">
+                    <div class="form-group">
+                        <label for="materias_que_cursa">Cantidad de materias que cursa:</label>
+                        <input type="text" class="form-control" id="materias_que_cursa" name="materias_que_cursa" readonly>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div>
+            <button class="btn btn-primary">Editar</button>
+            <button class="btn btn-primary">Imprimir Informe</button>
+        </div>
+
+        <hr>
+
+        <h2>Proyectos asignados</h2>
+
+        <table class="table" id="tablaProyectos">
+            <thead>
+            <tr>
+                <th>Nombre</th>
+                <th>Descripción</th>
+                <th>Fecha inicio</th>
+                <th>Fecha fin</th>
+                <th>Línea de investigación</th>
+                <th>Observaciones de desempeño</th>
+            </tr>
+            </thead>
+            <tbody>
+            <!-- Aquí puedes agregar filas con datos de proyectos asignados -->
+            </tbody>
+        </table>
+        <div>
+            <button class="btn btn-primary">Editar</button>
+            <button class="btn btn-primary">Imprimir Informe</button>
+        </div>
+    </div>
+</div>
+
+
+
+
+
+
+
+
+<!-- Footer -->
+<div id="footer">
+
+
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.3/dist/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+<script src="../js/script.js"></script>
+<script src="../profesor/DetallesBecarios.js"></script>
+</body>
+</html>

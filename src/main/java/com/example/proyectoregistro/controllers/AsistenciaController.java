@@ -5,6 +5,8 @@ import com.example.proyectoregistro.entities.Asistencia;
 import com.example.proyectoregistro.service.AsistenciaService;
 import com.example.proyectoregistro.service.IAsistenciaService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -16,17 +18,18 @@ public class AsistenciaController {
     private IAsistenciaService asistenciaService;
 
     @GetMapping("/user/asistencia/{nombreUsuario}")
-    public List<AsistenciaDto> getAsistencias(@PathVariable String nombreUsuario){
-        return asistenciaService.getAsistencias(nombreUsuario);
+    public ResponseEntity<List<AsistenciaDto>> getAsistencias(@PathVariable String nombreUsuario){
+        return ResponseEntity.status(HttpStatus.OK).body(asistenciaService.getAsistencias(nombreUsuario));
     }
 
     @PostMapping("/user/asistencia/{nombreUsuario}")
-    public void registrarAsistencias(@PathVariable String nombreUsuario, @RequestBody Asistencia asistencia){
+    public ResponseEntity<Void> registrarAsistencias(@PathVariable String nombreUsuario, @RequestBody Asistencia asistencia){
         asistenciaService.registrar(nombreUsuario,asistencia);
+        return ResponseEntity.status(HttpStatus.OK).build();
     }
 
     @GetMapping("/admin/asistencia/{idPersona}")
-    public List<AsistenciaDto> getAsistenciasBecario(@PathVariable long idPersona){
-        return asistenciaService.getAsistenciasBecario(idPersona);
+    public ResponseEntity<List<AsistenciaDto>> getAsistenciasBecario(@PathVariable long idPersona){
+        return ResponseEntity.status(HttpStatus.OK).body(asistenciaService.getAsistenciasBecario(idPersona));
     }
 }

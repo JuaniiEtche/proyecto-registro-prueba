@@ -9,4 +9,6 @@ public interface IPersonaService {
     void addPersona(Persona persona);
 
     List<PersonaDto> traerBecarios();
+
+    PersonaDto buscarBecario(long idPersona);
 }

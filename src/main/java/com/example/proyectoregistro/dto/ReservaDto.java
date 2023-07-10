@@ -11,8 +11,11 @@ import java.time.LocalDate;
 import java.time.LocalTime;
 import java.util.List;
 
-@Getter @Setter
+@Getter
+@Setter
 public class ReservaDto {
+
+    private long idReserva;
 
     private LocalDate fecha;
 
@@ -24,15 +27,13 @@ public class ReservaDto {
 
     private String nombreMateria;
 
+    private String ApellidoDocente;
+
+    private List<String> nombreGabinete;
     private String nombreDepartamento;
 
     private String nombreDocente;
-
-    private String ApellidoDocente;
-
     private String email;
 
     private String telefono;
-
-    private List<String> nombreGabinete;
 }

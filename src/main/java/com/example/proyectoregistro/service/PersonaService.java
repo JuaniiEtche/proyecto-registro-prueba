@@ -31,4 +31,10 @@ public class PersonaService implements IPersonaService {
 
         return personaDtos;
     }
+
+    public PersonaDto buscarBecario(long idPersona) {
+        Persona p = personaRepository.findPersonaByIdPersona(idPersona);
+
+        return new PersonaDto(p.getIdPersona(),p.getNombre(),p.getApellido(),p.getDni(),p.getEmail(),p.getNumTelefono(),p.getLegajo());
+    }
 }

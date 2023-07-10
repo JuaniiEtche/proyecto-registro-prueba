@@ -11,14 +11,16 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.10.2/fullcalendar.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.10.2/locale/es.js"></script>
-  <link rel="stylesheet" href="./lib/toastr.min.css">
-  <script src="./lib/toastr.min.js"></script>
+  <link rel="stylesheet" href="../lib/toastr.min.css">
+  <script src="../lib/toastr.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/pickadate/lib/picker.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/pickadate/lib/picker.date.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/pickadate/lib/picker.time.js"></script>
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/pickadate/lib/themes/classic.css">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/pickadate/lib/themes/classic.date.css">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/pickadate/lib/themes/classic.time.css">
+  <link rel="stylesheet" href="../css/styles.css">
+  <script src="../js/script.js"></script>
   <style>
     html, body {
       height: 100%;
@@ -30,9 +32,8 @@
       margin: 2rem auto;
     }
   </style>
-  <script src="js/script.js"></script>
 </head>
-<body onload="armarCabeceraAdmin(), armarFooter(), cargarReservas(),inicializar(),cambiarMaterias()">
+<body onload="armarCabeceraAdmin(), armarFooter(), cargarReservas(),inicializar(),cambiarMaterias(),cargarTablaPendiente()">
 
 <div id="cabecera-admin">
 
@@ -47,9 +48,28 @@
       <div class="col-md-4 d-flex flex-column justify-content-start align-items-center mb-4">
         <br><br><br><br>
         <button type="button" class="btn btn-primary mb-2" onclick="listarDepartamentos().then(abrirModalAñadirReserva).catch(console.error)">Añadir Reserva</button>
-        <button type="button" class="btn btn-secondary">Ver reservas pendientes</button>
       </div>
     </div>
+  <hr>
+  <h1 id="reservas-pendientes">Reservas pendientes</h1>
+  <table class="table table-hover" id="reservasPendientes">
+    <thead>
+    <tr>
+      <th scope="col">Número</th>
+      <th scope="col">Profesor</th>
+      <th scope="col">Materia</th>
+      <th scope="col">Fecha a reservar</th>
+      <th scope="col">Hora inicio</th>
+      <th scope="col">Hora fin</th>
+      <th scope="col">Teléfono</th>
+      <th scope="col">Mail</th>
+      <th scope="col">Acciones</th>
+    </tr>
+    </thead>
+    <tbody>
+
+    </tbody>
+  </table>
   </div>
 </div>
 
@@ -68,41 +88,41 @@
   </div>
 </div>
 
-
-<div class="modal fade" id="eventModal" tabindex="-1" role="dialog" aria-labelledby="eventModalLabel" aria-hidden="true">
-  <div class="modal-dialog" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="eventModalLabel">Detalles de la reserva</h5>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-      <div class="modal-body">
-        <a id="editarReserva" target="_blank"><img src="./img/editar-logo.png" style="float:right ;height: 24px; margin-right: 10px;"></a>
-        <div id="eventDate"></div>
-        <div id="eventStartAndEnd"></div>
-        <div id="eventTitle"></div>
-        <div id="eventDescription"></div>
-        <div id="eventProfessor"></div>
-        <br>
-        <div>
-          <a>Datos de contacto</a>
-          <hr style="margin-top: 5px; margin-bottom: 5px">
-          <div id="eventNumTelefono"></div>
-          <div id="eventEmail"></div>
+<div>
+  <div class="modal fade" id="eventModal" tabindex="-1" role="dialog" aria-labelledby="eventModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="eventModalLabel">Detalles de la reserva</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
         </div>
-      </div>
-      <div class="modal-footer justify-content-between">
-        <button type="button" class="btn btn-danger" id="deleteButton">Eliminar</button>
-        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+        <div class="modal-body">
+          <a id="editarReserva" target="_blank"><img src="../img/editar-logo.png" style="float:right ;height: 24px; margin-right: 10px;"></a>
+          <div id="eventDate"></div>
+          <div id="eventStartAndEnd"></div>
+          <div id="eventTitle"></div>
+          <div id="eventDescription"></div>
+          <div id="eventProfessor"></div>
+          <br>
+          <div>
+            <a>Datos de contacto</a>
+            <hr style="margin-top: 5px; margin-bottom: 5px">
+            <div id="eventNumTelefono"></div>
+            <div id="eventEmail"></div>
+          </div>
+        </div>
+        <div class="modal-footer justify-content-between">
+          <button type="button" class="btn btn-danger" id="deleteButton">Eliminar</button>
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+        </div>
       </div>
     </div>
   </div>
 </div>
 
 
-<!-- Modal para registrar una reserva -->
 <!-- Modal para registrar una reserva -->
 <div class="modal fade" id="reservaModal" tabindex="-1" role="dialog" aria-labelledby="reservaModalLabel" aria-hidden="true">
   <div class="modal-dialog modal-dialog-centered" role="document">
@@ -153,23 +173,22 @@
 
             </select>
           </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-primary" id="registrarReserva" onclick="altaReserva()">Registrar</button>
-        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
-      </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-primary" id="registrarReserva" onclick="altaReserva()">Registrar</button>
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+          </div>
         </form>
+      </div>
     </div>
   </div>
 </div>
-
-
 
 <!-- Footer -->
 <div id="footer">
 
 </div>
-
 <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.3/dist/umd/popper.min.js"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+<script src="gabinete.js"></script>
 </body>
 </html>

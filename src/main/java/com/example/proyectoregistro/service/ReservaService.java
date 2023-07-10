@@ -1,6 +1,8 @@
 package com.example.proyectoregistro.service;
 
 import com.example.proyectoregistro.dto.ReservaDto;
+import com.example.proyectoregistro.entities.Reserva;
+import com.example.proyectoregistro.repository.ReservaRepository;
 import com.example.proyectoregistro.entities.*;
 import com.example.proyectoregistro.repository.*;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,8 +12,37 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Service
-public class ReservaService implements IReservaService{
 
+public class ReservaService implements IReservaService { //implementa la Interfaz
+
+    public List<ReservaDto> tablaReservaPendiente() {
+        List<Reserva> reservas = reservaRepository.findReservasByEstado("pendiente"); // Hace uso de la Query que está en Repository
+        List<ReservaDto> reservaDtos = new ArrayList<>(); // Instancia para el mapeo
+
+        for (Reserva R:reservas) { // a Reserva le das de comer los que salga de la query que está conectada al Repository
+            ReservaDto reservaDto = new ReservaDto(); // Instancia pero está vacío
+            reservaDto.setEstado(R.getEstado()); // Seteo a la ReservaDto el estado pendiente
+            reservaDto.setFecha(R.getFecha());
+            reservaDto.setApellidoDocente(R.getDocente().getApellido());
+            reservaDto.setHoraFin(R.getHoraFin());
+            reservaDto.setHoraInicio(R.getHoraInicio());
+            reservaDto.setNombreMateria(R.getMateria().getNombre());
+            reservaDto.setIdReserva(R.getIdReserva());
+            reservaDto.setEmail(R.getDocente().getEmail());
+            reservaDto.setTelefono(R.getDocente().getTelefono());
+            //
+            List<String> gabinetesString = new ArrayList<String>(); // Creo una lista porque los gabinetes con una Lista
+
+            for (int i = 0; i < reservas.size(); i++) {
+                gabinetesString.add(R.getGabineteXReservas().get(i).getGabinete().getNombre()); // Se meten los elementos de R.getGabineteXReservas
+            }
+
+            reservaDto.setNombreGabinete(gabinetesString);
+            reservaDtos.add(reservaDto);
+        }
+
+        return reservaDtos;
+    }
     @Autowired
     private ReservaRepository reservaRepository;
     @Autowired

@@ -8,6 +8,8 @@ import com.example.proyectoregistro.repository.PersonaRepository;
 import com.example.proyectoregistro.repository.RolRepository;
 import com.example.proyectoregistro.service.*;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.bind.annotation.*;
 
@@ -33,7 +35,7 @@ public class UserController {
     ILineaInvestigacionService lineaInvestigacionService;
 
     @PostMapping("/public/usuario")
-    public void addUsuario(@RequestBody UsuarioRequest usuarioRequest){
+    public ResponseEntity<Void> addUsuario(@RequestBody UsuarioRequest usuarioRequest){
 
         //CON DATOS DE LA PERSONA, CREO LA PERSONA
         Persona persona = new Persona();
@@ -61,24 +63,27 @@ public class UserController {
         persona.setUsuario(usuario2);
         personaService.addPersona(persona);
 
+        return ResponseEntity.status(HttpStatus.OK).build();
     }
 
     @GetMapping("/user/{username}")
-    public UsuarioDto getUserName(@PathVariable String username){
+    public ResponseEntity<UsuarioDto> getUserName(@PathVariable String username){
         Usuario u = usuarioService.findUserByUsername(username);
-        return new UsuarioDto(u.getIdUser(),u.getNombre(),u.getRole().getNombre());
+
+        return ResponseEntity.status(HttpStatus.OK).body(new UsuarioDto(u.getIdUser(),u.getNombre(),u.getRole().getNombre()));
     }
 
     @GetMapping("/admin/user/{nombreUsuario}")
-    public List<LineaResponseDto> getUsuarioXlinea(@PathVariable String nombreUsuario){
+    public ResponseEntity<List<LineaResponseDto>> getUsuarioXlinea(@PathVariable String nombreUsuario){
 
         List<LineaResponseDto> response = lineaInvestigacionService.getUsersLinea(nombreUsuario);
+        return ResponseEntity.status(HttpStatus.OK).body(response);
 
-        return response;
     }
     @DeleteMapping("/admin/user")
-    public void deleteUser(@RequestBody Usuario usuario){
+    public ResponseEntity<Void> deleteUser(@RequestBody Usuario usuario){
         usuarioService.delete(usuario);
+        return ResponseEntity.status(HttpStatus.OK).build();
     }
 
 }

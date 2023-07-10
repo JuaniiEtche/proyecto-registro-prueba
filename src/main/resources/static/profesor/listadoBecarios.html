@@ -2,13 +2,15 @@
 <html>
 <head>
   <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-  <title>Lineas investigacion</title>
+  <title>Listado de Becarios</title>
   <!-- Incluir los estilos de Bootstrap -->
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.css">
   <script src="https://code.jquery.com/jquery-3.6.0.js" integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script>
-  <link rel="stylesheet" href="./lib/toastr.min.css">
-  <script src="./lib/toastr.min.js"></script></head>
-<body onload="armarCabeceraAdmin(),armarFooter(), cargarTablaLinea()">
+  <link rel="stylesheet" href="../lib/toastr.min.css">
+  <link rel="stylesheet" href="//cdn.datatables.net/1.13.5/css/jquery.dataTables.min.css">
+  <script src="//cdn.datatables.net/1.13.5/js/jquery.dataTables.min.js"></script>
+  <script src="../lib/toastr.min.js"></script></head>
+<body onload="cargarTablaBecarios(),armarCabeceraAdmin(),armarFooter()">
 
 <div id="cabecera-admin">
 
@@ -16,15 +18,18 @@
 
 <br>
 <div class="container">
-    <div class="content">
-    <h1>Lineas de investigacion</h1>
+  <div class="content">
+    <h1>Listado de Becarios</h1>
 
-    <table class="table" id="tablaLineas">
+    <table class="table" id="tablaBecariosA">
       <thead>
       <tr>
-        <th>Nombre</th>
-        <th>Descripcion</th>
-        <th>Proyectos</th>
+        <th>Nombre y Apellido</th>
+        <th>Dni</th>
+        <th>Telefono</th>
+        <th>Email</th>
+        <th>Legajo</th>
+        <th>Asistencia</th>
       </tr>
       </thead>
       <tbody>
@@ -32,6 +37,10 @@
       </tbody>
     </table>
   </div>
+</div>
+<!-- Footer -->
+<div id="footer">
+
 </div>
 
 
@@ -51,12 +60,9 @@
   </div>
 </div>
 
-<div id="footer">
-
-</div>
-
 <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.3/dist/umd/popper.min.js"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-<script src="js/script.js"></script>
+<script src="../js/script.js"></script>
+<script src="listadoBecarios.js"></script>
 </body>
 </html>

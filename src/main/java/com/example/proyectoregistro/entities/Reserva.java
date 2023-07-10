@@ -1,7 +1,9 @@
 package com.example.proyectoregistro.entities;
 
 import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import java.time.LocalDate;
@@ -11,6 +13,8 @@ import java.util.List;
 @Entity
 @Table(name = "reserva")
 @Getter @Setter
+@AllArgsConstructor
+@NoArgsConstructor
 public class Reserva {
 
     @Id
@@ -38,5 +42,6 @@ public class Reserva {
     private Docente docente;
 
     @OneToMany(mappedBy = "reserva",cascade = CascadeType.ALL)
+
     private List<GabineteXReserva> gabineteXReservas;
 }

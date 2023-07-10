@@ -4,6 +4,8 @@ import com.example.proyectoregistro.dto.GabineteDto;
 import com.example.proyectoregistro.service.IGabineteService;
 import lombok.Getter;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -16,8 +18,8 @@ public class GabineteController {
     private IGabineteService gabineteService;
 
     @GetMapping("/admin/gabinete")
-    public List<GabineteDto> getGabinete(){
-        return gabineteService.getGabinete();
+    public ResponseEntity<List<GabineteDto>> getGabinete(){
+        return ResponseEntity.status(HttpStatus.OK).body(gabineteService.getGabinete());
     }
 
 }

@@ -1,7 +1,9 @@
 package com.example.proyectoregistro.entities;
 
 import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import java.sql.Date;
@@ -10,6 +12,8 @@ import java.util.List;
 @Entity
 @Table(name = "proyecto")
 @Getter @Setter
+@AllArgsConstructor
+@NoArgsConstructor
 public class Proyecto {
 
     @Id
